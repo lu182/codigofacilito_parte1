@@ -11,9 +11,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.codigofacilito.ejemplos.models.Equipo;
 import com.codigofacilito.ejemplos.models.Jugador;
+import com.codigofacilito.ejemplos.services.EquipoService;
 
 @Controller
 public class ParametrosController {
+	
+	//Generamos una instancia de EquipoService:
+	EquipoService equipoService = new EquipoService(); //si en un futuro necesito realizar una implementación diferente de EquipoService,
+	//por ej: puedo llegar a necesitar los equipos de otra liga, en todos los lugares donde haya utilizado EquipoService tendria que modificar
+	//EquipoService por EquipoInglesaService. Esto nos genera un problema de mantenimiento y queda muy acoplado al código.
 	
 	
 	@GetMapping(value="/parametros")
@@ -25,7 +31,7 @@ public class ParametrosController {
 		model.addAttribute("titulo", "Parámetros"); //barra de titulo
 		model.addAttribute("parametro_uno", valor); //se lo enviamos a la etiqueta <span th:text="${parametro_uno}"></span>
 		model.addAttribute("parametro_dos", otroValor); //se lo enviamos a la etiqueta <span th:text="${parametro_dos}"></span>
-		return "parametros";
+		return "parametros"; //nombre de la vista que se renderizará, utilizando los atributos del modelo para influir en su presentación.
 	}
 	
 	//http://localhost:8080/equipos/JUVENTUS/10
@@ -35,7 +41,7 @@ public class ParametrosController {
 									@PathVariable("numero_jugador") Integer numero_jugador, Model model ) {
 		
 		//Realizamos la búsqueda del equipo a partir de los parámetros recibidos por path:
-		Optional<Equipo> equipoOptional = getEquipos().stream()
+		Optional<Equipo> equipoOptional = equipoService.getAllEquipos().stream()
 				.filter(equipo -> nombre_equipo.toLowerCase().equals(equipo.getNombreEquipo().toLowerCase())) //filtramos por equipo, donde-> nombre_equipo.equals(equipo.getNombreEquipo())
 				.findFirst(); //de este filtrado solamente obteneme el primero
 		
@@ -60,7 +66,8 @@ public class ParametrosController {
 		
 	
 	//Método auxiliar para generar una lista de equipos con algunos jugadores dentro para luego utilizarlo p/realzar la búsqueda
-	private List<Equipo> getEquipos(){
+	//Lo pasamos a la clase EquipoSerivce
+	/*private List<Equipo> getEquipos(){
 		Equipo barcelona = new Equipo();
 		barcelona.setNombreEquipo("Barcelona");
 		barcelona.addJugador(new Jugador("TER STEGEN", 1)); //acá usamos el constructor de Jugador que ya recibe un nombre y un número
@@ -79,6 +86,6 @@ public class ParametrosController {
 				
 		
 		return List.of(barcelona, juventus);
-	}
+	}*/
 	
 }
