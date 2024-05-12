@@ -1,9 +1,7 @@
 package com.codigofacilito.ejemplos.controllers;
 
-import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,14 +10,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.codigofacilito.ejemplos.models.Equipo;
 import com.codigofacilito.ejemplos.models.Jugador;
-import com.codigofacilito.ejemplos.services.EquipoService;
 import com.codigofacilito.ejemplos.services.IService;
 
 @Controller
 public class ParametrosController {
 	
-	@Autowired
+	private IService equipoService;
+	
+	//Constructor del propio Controller:
+	public ParametrosController(IService equipoService) { //inyección de dependencias
+		this.equipoService = equipoService;
+	}
+	
+	/*@Autowired
 	IService equipoService; //Reemplazamos el EquipoService equipoService (concreto) por la interfaz (IService)
+	*/
 	
 	/*Generamos una instancia de EquipoService:	
 	EquipoService equipoService = new EquipoService(); //si en un futuro necesito realizar una implementación diferente de EquipoService,
