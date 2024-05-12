@@ -3,6 +3,7 @@ package com.codigofacilito.ejemplos.controllers;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,15 +13,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.codigofacilito.ejemplos.models.Equipo;
 import com.codigofacilito.ejemplos.models.Jugador;
 import com.codigofacilito.ejemplos.services.EquipoService;
+import com.codigofacilito.ejemplos.services.IService;
 
 @Controller
 public class ParametrosController {
 	
-	//Generamos una instancia de EquipoService:
+	@Autowired
+	IService equipoService; //Reemplazamos el EquipoService equipoService (concreto) por la interfaz (IService)
+	
+	/*Generamos una instancia de EquipoService:	
 	EquipoService equipoService = new EquipoService(); //si en un futuro necesito realizar una implementación diferente de EquipoService,
 	//por ej: puedo llegar a necesitar los equipos de otra liga, en todos los lugares donde haya utilizado EquipoService tendria que modificar
 	//EquipoService por EquipoInglesaService. Esto nos genera un problema de mantenimiento y queda muy acoplado al código.
-	
+	*/
 	
 	@GetMapping(value="/parametros")
 	public String parametros(@RequestParam(defaultValue = "valor default") String valor, 

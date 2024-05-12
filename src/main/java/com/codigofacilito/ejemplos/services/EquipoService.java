@@ -2,10 +2,13 @@ package com.codigofacilito.ejemplos.services;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.codigofacilito.ejemplos.models.Equipo;
 import com.codigofacilito.ejemplos.models.Jugador;
 
-public class EquipoService {
+@Service
+public class EquipoService implements IService{
 
 	public List<Equipo> getAllEquipos(){ //Este método podria haber ido a algún archivo a buscar la misma info, se puede traer desde 
 		//una Api, desde una BD, podria tener lógica combinada: parte de un archivo y parte de una Api, etc.
