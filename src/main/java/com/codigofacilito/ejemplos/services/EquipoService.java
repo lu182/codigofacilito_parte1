@@ -12,16 +12,16 @@ public class EquipoService implements IService{
 
 	public List<Equipo> getAllEquipos(){ //Este método podria haber ido a algún archivo a buscar la misma info, se puede traer desde 
 		//una Api, desde una BD, podria tener lógica combinada: parte de un archivo y parte de una Api, etc.
-		Equipo barcelona = new Equipo();
-		barcelona.setNombreEquipo("Barcelona");
-		barcelona.addJugador(new Jugador("TER STEGEN", 1)); //acá usamos el constructor de Jugador que ya recibe un nombre y un número
-		barcelona.addJugador(new Jugador("ARAUJO", 4));
-		barcelona.addJugador(new Jugador("BUSQUETS", 5));
-		barcelona.addJugador(new Jugador("LEWANDOSKI", 9));
-		barcelona.addJugador(new Jugador("DEMBELE", 7));
+		Equipo interDeMilan = new Equipo();
+		interDeMilan.setNombreEquipo("InterDeMilan"); // http://localhost:8080/equipos/InterDeMilan/10
+		interDeMilan.addJugador(new Jugador("MARTINEZ", 10)); //acá usamos el constructor de Jugador que ya recibe un nombre y un número
+		interDeMilan.addJugador(new Jugador("SÁNCHEZ", 70));
+		interDeMilan.addJugador(new Jugador("THURAM", 9));
+		interDeMilan.addJugador(new Jugador("ACERBI", 15));
+		interDeMilan.addJugador(new Jugador("PAVARD", 28));
 		
 		Equipo juventus = new Equipo();
-		juventus.setNombreEquipo("Juventus");
+		juventus.setNombreEquipo("Juventus"); // http://localhost:8080/equipos/JUVENTUS/10
 		juventus.addJugador(new Jugador("CHIELLINI", 3)); //acá usamos el constructor de Jugador que ya recibe un nombre y un número
 		juventus.addJugador(new Jugador("POGBA", 6));
 		juventus.addJugador(new Jugador("DYBALA", 10));
@@ -29,6 +29,6 @@ public class EquipoService implements IService{
 		juventus.addJugador(new Jugador("BONUCCI", 19));
 				
 		
-		return List.of(barcelona, juventus);
+		return List.of(interDeMilan, juventus);
 	}
 }
