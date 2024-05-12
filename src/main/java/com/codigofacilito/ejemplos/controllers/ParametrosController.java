@@ -2,6 +2,7 @@ package com.codigofacilito.ejemplos.controllers;
 
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +19,7 @@ public class ParametrosController {
 	private IService equipoService;
 	
 	//Constructor del propio Controller:
-	public ParametrosController(IService equipoService) { //inyección de dependencias
+	public ParametrosController(@Qualifier("equiposItalia") IService equipoService) { //inyección de dependencias + @Qualifier("equiposItalia"): Para indicarle qué Servicio queremos implementar en esta instancia
 		this.equipoService = equipoService;
 	}
 	

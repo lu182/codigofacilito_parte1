@@ -2,12 +2,13 @@ package com.codigofacilito.ejemplos.services;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.codigofacilito.ejemplos.models.Equipo;
 import com.codigofacilito.ejemplos.models.Jugador;
 
-@Service
+@Service("equiposItalia") //Alias para llamar este Servicio en la anotación @Qualifier de ParametroController
 public class EquipoService implements IService{
 
 	public List<Equipo> getAllEquipos(){ //Este método podria haber ido a algún archivo a buscar la misma info, se puede traer desde 
